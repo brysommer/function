@@ -19,8 +19,6 @@ const boxl = {
     price: '50 грн',
 };
 
-
-
 const el1 = document.querySelector('input[name="lenght"]');
 const el2 = document.querySelector('input[name="widht"]');
 const el3 = document.querySelector('input[name="height"]');
@@ -32,51 +30,32 @@ const createItem = el4.addEventListener('click', (click) => {
     let itemWidht = el2.value;
     let itemHeight = el3.value;
 
-    let item = {
-        lenght: itemLenght,
-        widht: itemWidht,
-        height: itemHeight
-    };
-
-    sortedItems = Object.keys(item).sort(function(a,b) {
-        return item[a] - item[b];
+    let item = [itemLenght, itemWidht, itemHeight];
+ 
+    item.sort(function(a, b) {
+        return b - a;
     });
 
-
-
-
-    console.log(sortedItem());
-    const sortingItem = () => {
-        if (item.lenght < item.widht);
-        
-    }
-
-    const isFitting = () => {
-        
-        if (boxs.length > item.lenght && boxs.widht > item.widht && boxs.height > item.height) {
-            console.log('підійшлаS');
-            return;
-        };
-        if (boxm.length > item.lenght && boxm.widht > item.widht && boxm.height > item.height) {
-            console.log('підійшлаM');
-            return;
-        };
-        if (boxl.length > item.lenght && boxl.widht > item.widht && boxl.height > item.height) {
-            console.log('підійшлаL');
-            return;
-        } else {
-            console.log('усі коробки замалі');
-            return;
-        };
+    console.log(item);
     
-    };
-    isFitting();
+    getMatchingBoxPrice(boxs, boxm, boxl, item);
 });
 
-
-
-
-
-
-const getMatchingBoxPrice = () => {};
+const getMatchingBoxPrice = (boxs, boxl, boxm, item) => {  
+    if (boxs.length > item[0] && boxs.widht > item[1] && boxs.height > item[2]) {
+        console.log(boxs.price);
+        return;
+    };
+    if (boxm.length > item[0] && boxm.widht > item[1] && boxm.height > item[2]) {
+        console.log(boxm.price);
+        return;
+    };
+    if (boxl.length > item[0] && boxl.widht > item[1] && boxl.height > item[2]) {
+        console.log(boxl.price);
+        return;
+    } else {
+        console.log('усі коробки замалі');
+        return;
+    };
+};
 
